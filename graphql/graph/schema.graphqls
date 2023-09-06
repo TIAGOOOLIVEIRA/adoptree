@@ -1,0 +1,67 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Tree {
+  parent: ID
+  id: ID!
+  adopter: ID
+  name: String!
+  description: String!
+  location: String!
+  height: Float!
+  age: Int!
+  image: String!
+  user: User!
+}
+
+type AdoptionChallenge {
+  id: ID!
+  treeID: ID!
+  name: String!
+  description: String!
+  location: String!
+  image: String!
+  user: User!
+}
+
+type TreeCareTaker {
+  id: ID!
+  treeID: ID!
+  name: String!
+  description: String!
+  location: String!
+  image: String!
+  user: User!
+}
+
+type Todo {
+  id: ID!
+  text: String!
+  done: Boolean!
+  user: User!
+}
+
+##https://www.apollographql.com/tutorials/side-quest-intermediate-schema-design/02-the-enum-type
+enum Usertype {
+  adopter,
+  careTaker,
+}
+
+type User {
+  id: ID!
+  name: String!
+  usertype: Usertype!
+}
+
+type Query {
+  todos: [Todo!]!
+}
+
+type Mutation {
+  challengeAdoptees(input: AdoptionChallenge!): AdoptionChallenge!
+  careTakers(input: TreeCareTaker!): TreeCareTaker!
+  createTree(input: Tree!): Tree!
+  createUser(input: User!): User!
+
+}
